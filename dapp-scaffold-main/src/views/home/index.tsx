@@ -2,7 +2,6 @@
 
 // Next, React
 import React, { FC, useEffect, useRef, useState } from 'react';
-import pkg from '../../../package.json';
 
 // ❌ DO NOT EDIT ANYTHING ABOVE THIS LINE
 
@@ -787,5 +786,3 @@ const GameSandbox: FC = () => {
     </div>
   );
 };
-
-export default GameSandbox;
