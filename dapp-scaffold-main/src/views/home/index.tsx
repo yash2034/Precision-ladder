@@ -8,44 +8,10 @@ import pkg from '../../../package.json';
 
 export const HomeView: FC = () => {
   return (
-    <div className="flex min-h-screen flex-col bg-black text-white">
-      {/* HEADER – fake Scrolly feed tabs */}
-      <header className="flex items-center justify-center border-b border-white/10 py-3">
-        <div className="flex items-center gap-2 rounded-full bg-white/5 px-2 py-1 text-[11px]">
-          <button className="rounded-full bg-slate-900 px-3 py-1 font-semibold text-white">
-            Feed
-          </button>
-          <button className="rounded-full px-3 py-1 text-slate-400">
-            Casino
-          </button>
-          <button className="rounded-full px-3 py-1 text-slate-400">
-            Kids
-          </button>
-        </div>
-      </header>
-
-      {/* MAIN – central game area (phone frame) */}
-      <main className="flex flex-1 items-center justify-center px-4 py-3">
-        <div className="relative aspect-[9/16] w-full max-w-sm overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 shadow-[0_0_40px_rgba(56,189,248,0.35)]">
-          {/* Fake “feed card” top bar inside the phone */}
-          <div className="flex items-center justify-between px-3 py-2 text-[10px] text-slate-400">
-            <span className="rounded-full bg-white/5 px-2 py-1 text-[9px] uppercase tracking-wide">
-              Scrolly Game
-            </span>
-            <span className="text-[9px] opacity-70">#NoCodeJam</span>
-          </div>
-
-          {/* The game lives INSIDE this phone frame */}
-          <div className="flex h-[calc(100%-26px)] flex-col items-center justify-start px-3 pb-3 pt-1">
-            <GameSandbox />
-          </div>
-        </div>
-      </main>
-
-      {/* FOOTER – tiny version text */}
-      <footer className="flex h-5 items-center justify-center border-t border-white/10 px-2 text-[9px] text-slate-500">
-        <span>Scrolly · v{pkg.version}</span>
-      </footer>
+    <div className="w-full min-h-screen bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 text-white flex items-center justify-center py-4 sm:py-6">
+      <div className="w-full max-w-md sm:max-w-lg md:max-w-xl mx-auto">
+        <GameSandbox />
+      </div>
     </div>
   );
 };
@@ -306,37 +272,37 @@ const GameSandbox: FC = () => {
   const currentReward = stake * selectedMultiplier;
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full">
       
       {/* INFO MODAL */ }
       {showInfo && (
-        <div className="absolute inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-3 overflow-y-auto">
-          <div className="bg-slate-800 rounded-xl w-full max-h-full overflow-y-auto border-2 border-slate-600 shadow-2xl">
+        <div className="absolute inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-2 sm:p-3 overflow-y-auto">
+          <div className="bg-slate-800 rounded-lg sm:rounded-xl w-full max-w-md max-h-[90vh] sm:max-h-full overflow-y-auto border-2 border-slate-600 shadow-2xl">
             {/* Header */}
-            <div className="bg-purple-600 p-3 rounded-t-xl flex items-center justify-between sticky top-0 z-10">
-              <h2 className="text-base font-bold text-white">📖 How to Play</h2>
+            <div className="bg-purple-600 p-2 sm:p-3 rounded-t-lg sm:rounded-t-xl flex items-center justify-between sticky top-0 z-10">
+              <h2 className="text-sm sm:text-base font-bold text-white">📖 How to Play</h2>
               <button
                 onClick={() => setShowInfo(false)}
-                className="text-white text-xl font-bold hover:text-red-300"
+                className="text-white text-lg sm:text-xl font-bold hover:text-red-300 transition-colors"
               >
                 ✕
               </button>
             </div>
 
             {/* Content */}
-            <div className="p-3 space-y-3 text-xs">
+            <div className="p-2 sm:p-3 space-y-2 sm:space-y-3 text-[11px] sm:text-xs">
               {/* Game Objective */}
-              <div className="bg-purple-900 p-2 rounded-lg border border-purple-600">
-                <h3 className="text-yellow-400 font-bold text-xs mb-1">🎯 OBJECTIVE</h3>
-                <p className="text-white text-xs leading-snug">
+              <div className="bg-purple-900 p-1.5 sm:p-2 rounded-lg border border-purple-600">
+                <h3 className="text-yellow-400 font-bold text-[11px] sm:text-xs mb-0.5 sm:mb-1">🎯 OBJECTIVE</h3>
+                <p className="text-white text-[11px] sm:text-xs leading-snug">
                   Select a multiplier, enter your stake, and win the required number of games to get your reward! Hit JACKPOT (exact 0.10) for instant win!
                 </p>
               </div>
 
               {/* How to Play */}
-              <div className="bg-slate-700 p-2 rounded-lg border border-slate-600">
-                <h3 className="text-cyan-400 font-bold text-xs mb-1">🕹️ HOW TO PLAY</h3>
-                <ol className="text-white text-xs space-y-1 list-decimal list-inside">
+              <div className="bg-slate-700 p-1.5 sm:p-2 rounded-lg border border-slate-600">
+                <h3 className="text-cyan-400 font-bold text-[11px] sm:text-xs mb-0.5 sm:mb-1">🕹️ HOW TO PLAY</h3>
+                <ol className="text-white text-[11px] sm:text-xs space-y-0.5 sm:space-y-1 list-decimal list-inside leading-relaxed">
                   <li>Select your desired multiplier (1.5×, 2×, 5×, or 10×)</li>
                   <li>Enter your stake amount</li>
                   <li>Tap START (timer counts 3.00 → 0.00)</li>
@@ -348,87 +314,87 @@ const GameSandbox: FC = () => {
               </div>
 
               {/* Multipliers & Required Wins */}
-              <div className="bg-orange-900 p-2 rounded-lg border border-orange-600">
-                <h3 className="text-orange-300 font-bold text-xs mb-1">📈 MULTIPLIERS & WINS</h3>
-                <div className="space-y-1 text-xs">
-                  <div className="bg-slate-900 p-1.5 rounded">
-                    <div className="flex justify-between mb-0.5">
+              <div className="bg-orange-900 p-1.5 sm:p-2 rounded-lg border border-orange-600">
+                <h3 className="text-orange-300 font-bold text-[11px] sm:text-xs mb-0.5 sm:mb-1">📈 MULTIPLIERS & WINS</h3>
+                <div className="space-y-0.5 sm:space-y-1 text-[11px] sm:text-xs">
+                  <div className="bg-slate-900 p-1 sm:p-1.5 rounded">
+                    <div className="flex justify-between mb-0.5 flex-wrap gap-1">
                       <span className="text-white font-bold">1.5×</span>
-                      <span className="text-yellow-400 font-bold">5 wins required</span>
+                      <span className="text-yellow-400 font-bold text-[10px] sm:text-xs">5 wins required</span>
                     </div>
-                    <div className="text-[10px] text-green-300">Cashout: 3 wins → 1×</div>
+                    <div className="text-[9px] sm:text-[10px] text-green-300">Cashout: 3 wins → 1×</div>
                   </div>
-                  <div className="bg-slate-900 p-1.5 rounded">
-                    <div className="flex justify-between mb-0.5">
+                  <div className="bg-slate-900 p-1 sm:p-1.5 rounded">
+                    <div className="flex justify-between mb-0.5 flex-wrap gap-1">
                       <span className="text-white font-bold">2×</span>
-                      <span className="text-yellow-400 font-bold">10 wins required</span>
+                      <span className="text-yellow-400 font-bold text-[10px] sm:text-xs">10 wins required</span>
                     </div>
-                    <div className="text-[10px] text-green-300">Cashout: 5 wins → 1×</div>
+                    <div className="text-[9px] sm:text-[10px] text-green-300">Cashout: 5 wins → 1×</div>
                   </div>
-                  <div className="bg-slate-900 p-1.5 rounded">
-                    <div className="flex justify-between mb-0.5">
+                  <div className="bg-slate-900 p-1 sm:p-1.5 rounded">
+                    <div className="flex justify-between mb-0.5 flex-wrap gap-1">
                       <span className="text-white font-bold">5×</span>
-                      <span className="text-yellow-400 font-bold">15 wins required</span>
+                      <span className="text-yellow-400 font-bold text-[10px] sm:text-xs">15 wins required</span>
                     </div>
-                    <div className="text-[10px] text-green-300">Cashout: 8 wins → 2.5×</div>
+                    <div className="text-[9px] sm:text-[10px] text-green-300">Cashout: 8 wins → 2.5×</div>
                   </div>
-                  <div className="bg-yellow-700 p-1.5 rounded border border-yellow-500">
-                    <div className="flex justify-between mb-0.5">
+                  <div className="bg-yellow-700 p-1 sm:p-1.5 rounded border border-yellow-500">
+                    <div className="flex justify-between mb-0.5 flex-wrap gap-1">
                       <span className="text-white font-bold">10×</span>
-                      <span className="text-yellow-200 font-bold">20 wins required</span>
+                      <span className="text-yellow-200 font-bold text-[10px] sm:text-xs">20 wins required</span>
                     </div>
-                    <div className="text-[10px] text-yellow-200">Cashout: 10 wins → 5×</div>
+                    <div className="text-[9px] sm:text-[10px] text-yellow-200">Cashout: 10 wins → 5×</div>
                   </div>
                 </div>
               </div>
 
               {/* Cashout Info */}
-              <div className="bg-green-900 p-2 rounded-lg border border-green-600">
-                <h3 className="text-green-300 font-bold text-xs mb-1">💰 CASHOUT / RISK IT</h3>
-                <p className="text-white text-xs leading-snug mb-1">
+              <div className="bg-green-900 p-1.5 sm:p-2 rounded-lg border border-green-600">
+                <h3 className="text-green-300 font-bold text-[11px] sm:text-xs mb-0.5 sm:mb-1">💰 CASHOUT / RISK IT</h3>
+                <p className="text-white text-[11px] sm:text-xs leading-snug mb-0.5 sm:mb-1">
                   When you reach the minimum wins for cashout, the game will pause and ask you to choose:
                 </p>
-                <ul className="text-white text-xs space-y-0.5 list-disc list-inside">
+                <ul className="text-white text-[11px] sm:text-xs space-y-0.5 list-disc list-inside leading-relaxed">
                   <li><span className="font-bold text-green-300">CASHOUT:</span> Take the cashout multiplier reward now (safer)</li>
                   <li><span className="font-bold text-yellow-300">RISK IT:</span> Continue playing for the full multiplier reward (riskier but higher reward)</li>
                 </ul>
               </div>
 
               {/* Precision Zones */}
-              <div className="bg-slate-800 p-2 rounded-lg border border-slate-600">
-                <h3 className="text-pink-400 font-bold text-xs mb-1">⏱️ TIMER ZONES</h3>
-                <div className="space-y-1 text-xs">
-                  <div className="bg-yellow-900 p-1.5 rounded flex justify-between border border-yellow-600">
-                    <span className="text-yellow-300 font-bold">🎯 Exact 0.10</span>
-                    <span className="text-yellow-300 font-bold">JACKPOT (Instant Win!)</span>
+              <div className="bg-slate-800 p-1.5 sm:p-2 rounded-lg border border-slate-600">
+                <h3 className="text-pink-400 font-bold text-[11px] sm:text-xs mb-0.5 sm:mb-1">⏱️ TIMER ZONES</h3>
+                <div className="space-y-0.5 sm:space-y-1 text-[11px] sm:text-xs">
+                  <div className="bg-yellow-900 p-1 sm:p-1.5 rounded flex justify-between items-center border border-yellow-600 gap-1">
+                    <span className="text-yellow-300 font-bold text-[10px] sm:text-xs">🎯 Exact 0.10</span>
+                    <span className="text-yellow-300 font-bold text-[9px] sm:text-[10px]">JACKPOT</span>
                   </div>
-                  <div className="bg-green-900 p-1.5 rounded flex justify-between">
-                    <span className="text-green-300 font-bold">🟢 0.01-0.09</span>
-                    <span className="text-gray-300">Great Job (+1 win)</span>
+                  <div className="bg-green-900 p-1 sm:p-1.5 rounded flex justify-between items-center gap-1">
+                    <span className="text-green-300 font-bold text-[10px] sm:text-xs">🟢 0.01-0.09</span>
+                    <span className="text-gray-300 text-[9px] sm:text-[10px]">Great Job (+1)</span>
                   </div>
-                  <div className="bg-blue-900 p-1.5 rounded flex justify-between">
-                    <span className="text-blue-300 font-bold">🔵 0.11-0.20</span>
-                    <span className="text-gray-300">Good Job (+1 win)</span>
+                  <div className="bg-blue-900 p-1 sm:p-1.5 rounded flex justify-between items-center gap-1">
+                    <span className="text-blue-300 font-bold text-[10px] sm:text-xs">🔵 0.11-0.20</span>
+                    <span className="text-gray-300 text-[9px] sm:text-[10px]">Good Job (+1)</span>
                   </div>
-                  <div className="bg-purple-900 p-1.5 rounded flex justify-between">
-                    <span className="text-purple-300 font-bold">🟣 0.21-0.30</span>
-                    <span className="text-gray-300">Nice (+1 win)</span>
+                  <div className="bg-purple-900 p-1 sm:p-1.5 rounded flex justify-between items-center gap-1">
+                    <span className="text-purple-300 font-bold text-[10px] sm:text-xs">🟣 0.21-0.30</span>
+                    <span className="text-gray-300 text-[9px] sm:text-[10px]">Nice (+1)</span>
                   </div>
-                  <div className="bg-slate-700 p-1.5 rounded flex justify-between">
-                    <span className="text-slate-300 font-bold">⚪ Beyond 0.30</span>
-                    <span className="text-gray-300">Miss (no win)</span>
+                  <div className="bg-slate-700 p-1 sm:p-1.5 rounded flex justify-between items-center gap-1">
+                    <span className="text-slate-300 font-bold text-[10px] sm:text-xs">⚪ Beyond 0.30</span>
+                    <span className="text-gray-300 text-[9px] sm:text-[10px]">Miss</span>
                   </div>
-                  <div className="bg-red-900 p-1.5 rounded flex justify-between border border-red-600">
-                    <span className="text-red-300 font-bold">💀 0.00</span>
-                    <span className="text-red-300 font-bold">GAME OVER</span>
+                  <div className="bg-red-900 p-1 sm:p-1.5 rounded flex justify-between items-center border border-red-600 gap-1">
+                    <span className="text-red-300 font-bold text-[10px] sm:text-xs">💀 0.00</span>
+                    <span className="text-red-300 font-bold text-[9px] sm:text-[10px]">GAME OVER</span>
                   </div>
                 </div>
               </div>
 
               {/* JACKPOT Info */}
-              <div className="bg-yellow-900 p-2 rounded-lg border border-yellow-600">
-                <h3 className="text-yellow-300 font-bold text-xs mb-1">🎯 JACKPOT RULE</h3>
-                <p className="text-white text-xs leading-snug">
+              <div className="bg-yellow-900 p-1.5 sm:p-2 rounded-lg border border-yellow-600">
+                <h3 className="text-yellow-300 font-bold text-[11px] sm:text-xs mb-0.5 sm:mb-1">🎯 JACKPOT RULE</h3>
+                <p className="text-white text-[11px] sm:text-xs leading-snug">
                   If you stop the timer at <span className="font-bold text-yellow-300">exact 0.10</span>, you instantly win your selected multiplier reward! No need to play all games!
                 </p>
               </div>
@@ -436,7 +402,7 @@ const GameSandbox: FC = () => {
               {/* Close Button */}
               <button
                 onClick={() => setShowInfo(false)}
-                className="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold rounded-lg"
+                className="w-full py-1.5 sm:py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs sm:text-sm font-bold rounded-lg transition-colors"
               >
                 Got It! 🎮
               </button>
@@ -446,35 +412,35 @@ const GameSandbox: FC = () => {
       )}
 
 
-      {/* Main Container - Fixed height */}
-      <div className={`flex flex-col h-full ${shake ? 'animate-pulse' : ''}`}>
+      {/* Main Container */}
+      <div className={shake ? 'animate-pulse' : ''}>
         
-        {/* HEADER - Fixed */}
-        <div className="bg-slate-800 border-b border-slate-700 px-1.5 py-1 text-center flex-shrink-0">
-          <div className="flex items-center justify-center gap-1.5">
-            <h1 className="text-[10px] font-bold text-white">⚡ PRECISION LADDER</h1>
+        {/* HEADER */}
+        <div className="border-b-2 border-slate-600/30 px-2.5 sm:px-3 md:px-4 py-2.5 sm:py-3 md:py-4 text-center">
+          <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3">
+            <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold text-white drop-shadow-lg">⚡ PRECISION LADDER</h1>
             <button
               onClick={() => setShowInfo(true)}
-              className="w-4 h-4 bg-slate-700 hover:bg-slate-600 rounded-full flex items-center justify-center text-[9px]"
+              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-slate-600 hover:bg-slate-500 rounded-full flex items-center justify-center text-[10px] sm:text-xs md:text-sm transition-all hover:scale-110 shadow-md flex-shrink-0"
             >
               ℹ️
             </button>
           </div>
-          <p className="text-[9px] text-slate-300 mt-0.5">Stop perfectly • 0.00 = Game Over</p>
+          <p className="text-[10px] sm:text-xs md:text-sm lg:text-base text-slate-200 mt-1 sm:mt-1.5 font-medium">Stop perfectly • 0.00 = Game Over</p>
         </div>
 
-        {/* CONTENT - Scrollable with fixed height */}
-        <div className="flex-1 overflow-y-auto p-1.5 scroll-smooth">
-          <div className="min-h-full flex flex-col justify-center space-y-1.5" style={{ scrollBehavior: 'auto' }}>
+        {/* CONTENT */}
+        <div className="p-2.5 sm:p-3 md:p-4">
+          <div className="space-y-2.5 sm:space-y-3 md:space-y-4">
           
           {/* IDLE STATE */}
           {gameState === 'idle' && (
             <>
-              <div className="bg-slate-800 p-1.5 rounded-lg border border-slate-600">
-                <label className="block text-white text-[9px] font-bold mb-0.5 text-center">
+              <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-2.5 sm:p-3 md:p-4 rounded-lg border-2 border-slate-600/50 shadow-lg">
+                <label className="block text-white text-xs sm:text-sm md:text-base font-bold mb-2 sm:mb-3 text-center">
                   🎯 Multiplier
                 </label>
-                <div className="grid grid-cols-2 gap-0.5 mb-0.5">
+                <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-3">
                   {[1.5, 2, 5, 10].map((mult) => (
                     <button
                       key={mult}
@@ -482,10 +448,10 @@ const GameSandbox: FC = () => {
                         setSelectedMultiplier(mult);
                         setRequiredWins(getRequiredWins(mult));
                       }}
-                      className={`py-1 text-white text-[9px] font-bold rounded ${
+                      className={`py-2 sm:py-2.5 md:py-3 text-white text-xs sm:text-sm md:text-base font-bold rounded-lg transition-all transform hover:scale-105 ${
                         selectedMultiplier === mult
-                          ? 'bg-yellow-600 border border-yellow-400'
-                          : 'bg-slate-700 hover:bg-slate-600'
+                          ? 'bg-gradient-to-br from-yellow-500 to-yellow-600 border-2 border-yellow-400 shadow-md shadow-yellow-500/50'
+                          : 'bg-slate-700 hover:bg-slate-600 border-2 border-slate-600 shadow'
                       }`}
                     >
                       {mult}× ({getRequiredWins(mult)})
@@ -494,8 +460,8 @@ const GameSandbox: FC = () => {
                 </div>
               </div>
 
-              <div className="bg-slate-800 p-1.5 rounded-lg border border-slate-600">
-                <label className="block text-white text-[9px] font-bold mb-1 text-center">
+              <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-2.5 sm:p-3 md:p-4 rounded-lg border-2 border-slate-600/50 shadow-lg">
+                <label className="block text-white text-xs sm:text-sm md:text-base font-bold mb-2 sm:mb-3 text-center">
                   💰 Enter Stake
                 </label>
                 <div className="flex justify-center">
@@ -503,43 +469,45 @@ const GameSandbox: FC = () => {
                     type="number"
                     value={stakeInput}
                     onChange={(e) => setStakeInput(e.target.value)}
-                    className="w-24 px-1.5 py-1 text-base font-bold text-center bg-slate-900 text-yellow-400 border border-slate-600 rounded focus:outline-none focus:border-yellow-500"
+                    className="w-28 sm:w-36 md:w-40 px-2.5 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-lg sm:text-xl md:text-2xl font-bold text-center bg-slate-900 text-yellow-400 border-2 border-slate-600 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500/50 shadow-md"
                     placeholder="10"
                     min="1"
                     max={balance}
                   />
                 </div>
-                <div className="flex justify-center gap-0.5 mt-1">
+                <div className="flex justify-center gap-1.5 sm:gap-2 md:gap-3 mt-2 sm:mt-3">
                   {[5, 10, 25, 50].map((amount) => (
                     <button
                       key={amount}
                       onClick={() => setStakeInput(amount.toString())}
                       disabled={amount > balance}
-                      className={`px-1.5 py-0.5 text-white text-[9px] font-bold rounded ${
+                      className={`px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 text-white text-[10px] sm:text-xs md:text-sm font-bold rounded-lg transition-all transform hover:scale-105 ${
                         amount > balance 
                           ? 'bg-slate-700 text-slate-500 cursor-not-allowed' 
-                          : 'bg-blue-600 hover:bg-blue-700'
+                          : stakeInput === amount.toString()
+                          ? 'bg-gradient-to-br from-blue-500 to-blue-600 border-2 border-blue-400 shadow-md shadow-blue-500/50'
+                          : 'bg-gradient-to-br from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border-2 border-blue-500 shadow'
                       }`}
                     >
                       {amount}
                     </button>
                   ))}
                 </div>
-                <p className="text-center text-[9px] text-slate-300 mt-1">
-                  Win: {parseInt(stakeInput) * selectedMultiplier || 0} 🪙 | Bal: {balance}
+                <p className="text-center text-xs sm:text-sm md:text-base text-slate-200 mt-2 sm:mt-3 font-semibold">
+                  Win: <span className="text-yellow-400">{parseInt(stakeInput) * selectedMultiplier || 0}</span> 🪙 | Bal: <span className="text-green-400">{balance}</span> 🪙
                 </p>
               </div>
 
               <button
                 onClick={startGame}
                 disabled={parseInt(stakeInput) > balance || parseInt(stakeInput) < 1}
-                className={`w-full py-1.5 text-white text-xs font-bold rounded-lg ${
+                className={`w-full py-2.5 sm:py-3 md:py-3.5 text-white text-sm sm:text-base md:text-lg font-extrabold rounded-lg transition-all transform hover:scale-105 ${
                   parseInt(stakeInput) > balance || parseInt(stakeInput) < 1
                     ? 'bg-slate-700 text-slate-400 cursor-not-allowed'
-                    : 'bg-green-600 hover:bg-green-700'
+                    : 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 shadow-lg shadow-green-500/50 border-2 border-green-400'
                 }`}
               >
-                🚀 START
+                🚀 START GAME
               </button>
             </>
           )}
@@ -548,58 +516,58 @@ const GameSandbox: FC = () => {
           {(gameState === 'running' || gameState === 'evaluating') && (
             <>
               {/* Stats Row */}
-              <div className="flex items-center justify-center gap-1">
-                <div className="bg-purple-700 px-1.5 py-0.5 rounded border border-purple-600 text-center flex-1">
-                  <p className="text-[8px] text-purple-100">Stake</p>
-                  <p className="text-[10px] font-bold text-white">{stake}</p>
+              <div className="flex items-stretch justify-center gap-1.5 sm:gap-2 md:gap-3">
+                <div className="bg-gradient-to-br from-purple-600 to-purple-700 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 rounded-lg border-2 border-purple-500 text-center flex-1 min-w-0 shadow-md flex flex-col justify-center">
+                  <p className="text-[9px] sm:text-[10px] md:text-xs text-purple-100 font-semibold mb-0.5 sm:mb-1">Stake</p>
+                  <p className="text-xs sm:text-sm md:text-base font-bold text-white leading-tight">{stake} 🪙</p>
                 </div>
-                <div className="bg-orange-600 px-1.5 py-0.5 rounded border border-orange-500 text-center flex-1">
-                  <p className="text-[8px] text-orange-100">Multi</p>
-                  <p className="text-[10px] font-bold text-white">{selectedMultiplier}×</p>
+                <div className="bg-gradient-to-br from-orange-500 to-orange-600 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 rounded-lg border-2 border-orange-400 text-center flex-1 min-w-0 shadow-md flex flex-col justify-center">
+                  <p className="text-[9px] sm:text-[10px] md:text-xs text-orange-100 font-semibold mb-0.5 sm:mb-1">Multi</p>
+                  <p className="text-xs sm:text-sm md:text-base font-bold text-white leading-tight">{selectedMultiplier}×</p>
                 </div>
-                <div className="bg-green-600 px-1.5 py-0.5 rounded border border-green-500 text-center flex-1">
-                  <p className="text-[8px] text-green-100">Win</p>
-                  <p className="text-[10px] font-bold text-white">{Math.floor(currentReward)}</p>
+                <div className="bg-gradient-to-br from-green-500 to-green-600 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 rounded-lg border-2 border-green-400 text-center flex-1 min-w-0 shadow-md flex flex-col justify-center">
+                  <p className="text-[9px] sm:text-[10px] md:text-xs text-green-100 font-semibold mb-0.5 sm:mb-1">Win</p>
+                  <p className="text-xs sm:text-sm md:text-base font-bold text-white leading-tight">{Math.floor(currentReward)} 🪙</p>
                 </div>
               </div>
 
               {/* Wins & Speed */}
-              <div className="flex items-center justify-center gap-1">
-                <div className="bg-slate-800 px-1.5 py-0.5 rounded border border-slate-600 text-center flex-1">
-                  <p className="text-[8px] text-slate-300">Wins</p>
-                  <p className="text-[10px] font-bold text-blue-400">{wins}/{requiredWins}</p>
+              <div className="flex items-stretch justify-center gap-1.5 sm:gap-2 md:gap-3">
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 rounded-lg border-2 border-slate-600 text-center flex-1 min-w-0 shadow-md flex flex-col justify-center">
+                  <p className="text-[9px] sm:text-[10px] md:text-xs text-slate-300 font-semibold mb-0.5 sm:mb-1">Wins</p>
+                  <p className="text-xs sm:text-sm md:text-base font-bold text-blue-400 leading-tight">{wins}/{requiredWins}</p>
                 </div>
-                <div className="bg-slate-800 px-1.5 py-0.5 rounded border border-slate-600 text-center flex-1">
-                  <p className="text-[8px] text-slate-300">Speed</p>
-                  <p className="text-[10px] font-bold text-yellow-400">{currentSpeed.toFixed(1)}×</p>
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 rounded-lg border-2 border-slate-600 text-center flex-1 min-w-0 shadow-md flex flex-col justify-center">
+                  <p className="text-[9px] sm:text-[10px] md:text-xs text-slate-300 font-semibold mb-0.5 sm:mb-1">Speed</p>
+                  <p className="text-xs sm:text-sm md:text-base font-bold text-yellow-400 leading-tight">{currentSpeed.toFixed(1)}×</p>
                 </div>
                 {canCashout() && (
-                  <div className="bg-green-800 px-1.5 py-0.5 rounded border border-green-500 text-center flex-1">
-                    <p className="text-[8px] text-green-200">Cashout</p>
-                    <p className="text-[10px] font-bold text-green-300">{getCashoutInfo(selectedMultiplier).cashoutMultiplier}×</p>
+                  <div className="bg-gradient-to-br from-green-700 to-green-800 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 rounded-lg border-2 border-green-500 text-center flex-1 min-w-0 shadow-md flex flex-col justify-center">
+                    <p className="text-[9px] sm:text-[10px] md:text-xs text-green-200 font-semibold mb-0.5 sm:mb-1">Cashout</p>
+                    <p className="text-xs sm:text-sm md:text-base font-bold text-green-300 leading-tight">{getCashoutInfo(selectedMultiplier).cashoutMultiplier}×</p>
                   </div>
                 )}
               </div>
 
               {/* Progress Bar */}
-              <div className="bg-slate-800 p-1 rounded border border-slate-600">
-                <div className="w-full bg-slate-700 rounded-full h-1">
+              <div className="bg-slate-800 p-2 sm:p-2.5 md:p-3 rounded-lg border-2 border-slate-600 shadow-md">
+                <div className="w-full bg-slate-700 rounded-full h-2 sm:h-2.5 md:h-3 overflow-hidden">
                   <div
-                    className="h-full bg-blue-500 rounded-full transition-all"
+                    className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-300 shadow-md"
                     style={{ width: `${progressPercent}%` }}
                   />
                 </div>
               </div>
 
               {/* Circular Timer */}
-              <div className="flex justify-center py-1">
-                <div className="relative w-20 h-20">
-                  {/* Outer Circle */}
-                  <svg className="transform -rotate-90 w-20 h-20">
+              <div className="flex justify-center items-center py-2 sm:py-3 md:py-4">
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center">
+                  {/* Outer Circle - Mobile */}
+                  <svg className="transform -rotate-90 w-24 h-24 sm:hidden absolute inset-0" viewBox="0 0 96 96" preserveAspectRatio="xMidYMid meet">
                     <circle
-                      cx="40"
-                      cy="40"
-                      r="36"
+                      cx="48"
+                      cy="48"
+                      r="42"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="4"
@@ -607,9 +575,9 @@ const GameSandbox: FC = () => {
                     />
                     {/* Progress Circle */}
                     <circle
-                      cx="40"
-                      cy="40"
-                      r="36"
+                      cx="48"
+                      cy="48"
+                      r="42"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="4"
@@ -623,34 +591,67 @@ const GameSandbox: FC = () => {
                         timer > 0 ? 'text-orange-400' : 'text-red-400'
                       }`}
                       style={{
-                        strokeDasharray: `${2 * Math.PI * 36}`,
-                        strokeDashoffset: `${2 * Math.PI * 36 * (1 - (timer / 3.0))}`,
+                        strokeDasharray: `${2 * Math.PI * 42}`,
+                        strokeDashoffset: `${2 * Math.PI * 42 * (1 - (timer / 3.0))}`,
                         transition: isTimerRunning && timer < 3.0 ? 'stroke-dashoffset 0.1s linear, stroke 0.2s ease' : 'stroke-dashoffset 0s, stroke 0.2s ease'
                       }}
                     />
                   </svg>
-                  {/* Timer Text */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <p className={`text-lg font-bold ${
+                  {/* Outer Circle - Desktop */}
+                  <svg className="transform -rotate-90 w-28 h-28 md:w-32 md:h-32 hidden sm:block absolute inset-0" viewBox="0 0 112 112" preserveAspectRatio="xMidYMid meet">
+                    <circle
+                      cx="56"
+                      cy="56"
+                      r="50"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="5"
+                      className="text-slate-700"
+                    />
+                    {/* Progress Circle */}
+                    <circle
+                      cx="56"
+                      cy="56"
+                      r="50"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="5"
+                      strokeLinecap="round"
+                      className={`${
                         (timer >= 0.095 && timer <= 0.105) ? 'text-yellow-400' :
                         timer >= 0.01 && timer < 0.10 ? 'text-green-400' :
                         timer >= 0.11 && timer <= 0.20 ? 'text-blue-400' :
                         timer >= 0.21 && timer <= 0.30 ? 'text-purple-400' :
                         timer > 0.30 ? 'text-slate-400' :
                         timer > 0 ? 'text-orange-400' : 'text-red-400'
-                      }`}>
-                        {timer.toFixed(2)}
-                      </p>
-                    </div>
+                      }`}
+                      style={{
+                        strokeDasharray: `${2 * Math.PI * 50}`,
+                        strokeDashoffset: `${2 * Math.PI * 50 * (1 - (timer / 3.0))}`,
+                        transition: isTimerRunning && timer < 3.0 ? 'stroke-dashoffset 0.1s linear, stroke 0.2s ease' : 'stroke-dashoffset 0s, stroke 0.2s ease'
+                      }}
+                    />
+                  </svg>
+                  {/* Timer Text - Centered */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                    <p className={`text-base sm:text-xl md:text-2xl font-extrabold drop-shadow-md ${
+                      (timer >= 0.095 && timer <= 0.105) ? 'text-yellow-400' :
+                      timer >= 0.01 && timer < 0.10 ? 'text-green-400' :
+                      timer >= 0.11 && timer <= 0.20 ? 'text-blue-400' :
+                      timer >= 0.21 && timer <= 0.30 ? 'text-purple-400' :
+                      timer > 0.30 ? 'text-slate-400' :
+                      timer > 0 ? 'text-orange-400' : 'text-red-400'
+                    }`}>
+                      {timer.toFixed(2)}
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Result Display */}
               {precisionResult && gameState === 'evaluating' && (
-                <div className="text-center py-0.5">
-                  <p className={`text-sm font-bold ${
+                <div className="text-center py-2 sm:py-3">
+                  <p className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-extrabold drop-shadow-md ${
                     precisionResult === 'JACKPOT' ? 'text-yellow-300' :
                     precisionResult === 'Great Job' ? 'text-green-400' :
                     precisionResult === 'Good Job' ? 'text-blue-400' :
@@ -668,9 +669,9 @@ const GameSandbox: FC = () => {
               {gameState === 'running' && (
                 <button
                   onClick={stopTimer}
-                  className="w-full py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-lg"
+                  className="w-full py-3 sm:py-3.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white text-base sm:text-lg font-extrabold rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-red-500/50 border-2 border-red-400"
                 >
-                  ✋ STOP
+                  ✋ STOP TIMER
                 </button>
               )}
             </>
@@ -679,34 +680,34 @@ const GameSandbox: FC = () => {
           {/* CASHOUT DECISION STATE */}
           {gameState === 'cashout_decision' && (
             <>
-              <div className="bg-blue-600 p-2 rounded-lg text-center border border-blue-500">
-                <p className="text-lg font-bold text-white mb-1">💰 CASHOUT OR RISK IT?</p>
-                <div className="bg-slate-900 rounded p-1.5 space-y-1">
-                  <p className="text-xs text-blue-100">You've reached {wins} wins!</p>
-                  <div className="flex justify-between items-center py-1 border-t border-slate-700">
-                    <div className="text-left">
-                      <p className="text-[9px] text-slate-300">Cashout Now:</p>
-                      <p className="text-sm font-bold text-green-400">{getCashoutInfo(selectedMultiplier).cashoutMultiplier}× = {Math.floor(getCashoutReward())} 🪙</p>
+              <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-4 sm:p-5 rounded-lg text-center border-2 border-blue-400 shadow-lg">
+                <p className="text-xl sm:text-2xl font-extrabold text-white mb-3">💰 CASHOUT OR RISK IT?</p>
+                <div className="bg-slate-900 rounded-lg p-3 sm:p-4 space-y-3">
+                  <p className="text-sm sm:text-base text-blue-100 font-semibold">You&apos;ve reached {wins} wins!</p>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 py-3 border-t border-slate-700">
+                    <div className="text-left w-full sm:w-auto">
+                      <p className="text-xs sm:text-sm text-slate-300 mb-1">Cashout Now:</p>
+                      <p className="text-lg sm:text-xl font-bold text-green-400">{getCashoutInfo(selectedMultiplier).cashoutMultiplier}× = {Math.floor(getCashoutReward())} 🪙</p>
                     </div>
-                    <div className="text-right">
-                      <p className="text-[9px] text-slate-300">Risk It For:</p>
-                      <p className="text-sm font-bold text-yellow-400">{selectedMultiplier}× = {Math.floor(currentReward)} 🪙</p>
+                    <div className="text-right w-full sm:w-auto">
+                      <p className="text-xs sm:text-sm text-slate-300 mb-1">Risk It For:</p>
+                      <p className="text-lg sm:text-xl font-bold text-yellow-400">{selectedMultiplier}× = {Math.floor(currentReward)} 🪙</p>
                     </div>
                   </div>
-                  <p className="text-[9px] text-blue-200">Wins: {wins}/{requiredWins}</p>
+                  <p className="text-sm sm:text-base text-blue-200 font-semibold">Wins: {wins}/{requiredWins}</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-1.5">
+              <div className="grid grid-cols-2 gap-3">
                 <button
                   onClick={handleCashout}
-                  className="py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-bold rounded-lg"
+                  className="py-3 sm:py-3.5 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-white text-sm sm:text-base font-extrabold rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-green-500/50 border-2 border-green-400"
                 >
                   💰 CASHOUT
                 </button>
                 <button
                   onClick={handleRiskIt}
-                  className="py-2 bg-yellow-600 hover:bg-yellow-700 text-white text-xs font-bold rounded-lg"
+                  className="py-3 sm:py-3.5 bg-gradient-to-r from-yellow-600 to-yellow-700 hover:from-yellow-500 hover:to-yellow-600 text-white text-sm sm:text-base font-extrabold rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-yellow-500/50 border-2 border-yellow-400"
                 >
                   ⚡ RISK IT
                 </button>
@@ -717,18 +718,18 @@ const GameSandbox: FC = () => {
           {/* JACKPOT WIN STATE */}
           {gameState === 'jackpot_win' && (
             <>
-              <div className="bg-yellow-600 p-2 rounded-lg text-center border border-yellow-500">
-                <p className="text-lg font-bold text-white mb-1">🎯 JACKPOT! 🎯</p>
-                <div className="bg-slate-900 rounded p-1.5 space-y-0.5">
-                  <p className="text-xs text-yellow-100">You hit exact 0.10!</p>
-                  <p className="text-2xl font-bold text-yellow-300">{Math.floor(currentReward)} 🪙</p>
-                  <p className="text-[10px] text-yellow-100">Instant Win!</p>
+              <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 p-4 sm:p-5 rounded-lg text-center border-2 border-yellow-400 shadow-lg">
+                <p className="text-2xl sm:text-3xl font-extrabold text-white mb-3 drop-shadow-md">🎯 JACKPOT! 🎯</p>
+                <div className="bg-slate-900 rounded-lg p-4 sm:p-5 space-y-3">
+                  <p className="text-base sm:text-lg text-yellow-100 font-semibold">You hit exact 0.10!</p>
+                  <p className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-yellow-300 drop-shadow-md">{Math.floor(currentReward)} 🪙</p>
+                  <p className="text-sm sm:text-base text-yellow-100 font-semibold">Instant Win!</p>
                 </div>
               </div>
 
               <button
                 onClick={restart}
-                className="w-full py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg"
+                className="w-full py-3 sm:py-3.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white text-base sm:text-lg font-extrabold rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-blue-500/50 border-2 border-blue-400"
               >
                 🔄 PLAY AGAIN
               </button>
@@ -738,18 +739,18 @@ const GameSandbox: FC = () => {
           {/* FAILED STATE */}
           {gameState === 'failed' && (
             <>
-              <div className="bg-red-700 p-2 rounded-lg text-center border border-red-600">
-                <p className="text-lg font-bold text-white mb-1">💀 GAME OVER</p>
-                <div className="bg-slate-900 rounded p-1.5 space-y-0.5">
-                  <p className="text-xs text-white font-bold">Timer Hit 0.00!</p>
-                  <p className="text-[9px] text-red-200">Wins: {wins}/{requiredWins}</p>
-                  <p className="text-xs text-red-300 font-bold">Lost: {stake} 🪙</p>
+              <div className="bg-gradient-to-br from-red-700 to-red-800 p-4 sm:p-5 rounded-lg text-center border-2 border-red-600 shadow-lg">
+                <p className="text-2xl sm:text-3xl font-extrabold text-white mb-3 drop-shadow-md">💀 GAME OVER</p>
+                <div className="bg-slate-900 rounded-lg p-4 sm:p-5 space-y-2">
+                  <p className="text-base sm:text-lg text-white font-bold">Timer Hit 0.00!</p>
+                  <p className="text-sm sm:text-base text-red-200">Wins: {wins}/{requiredWins}</p>
+                  <p className="text-lg sm:text-xl text-red-300 font-bold">Lost: {stake} 🪙</p>
                 </div>
               </div>
 
               <button
                 onClick={restart}
-                className="w-full py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg"
+                className="w-full py-3 sm:py-3.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white text-base sm:text-lg font-extrabold rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-blue-500/50 border-2 border-blue-400"
               >
                 🔄 TRY AGAIN
               </button>
@@ -759,22 +760,22 @@ const GameSandbox: FC = () => {
           {/* CASHED OUT STATE */}
           {gameState === 'cashed_out' && (
             <>
-              <div className="bg-green-600 p-2 rounded-lg text-center border border-green-500">
-                <p className="text-lg font-bold text-white mb-1">🎉 WINNER! 🎉</p>
-                <div className="bg-slate-900 rounded p-1.5 space-y-0.5">
-                  <p className="text-2xl font-bold text-yellow-300">{Math.floor(isEarlyCashout ? getCashoutReward() : currentReward)}</p>
-                  <p className="text-[10px] text-green-100">Profit: <span className="font-bold text-yellow-300">+{Math.floor((isEarlyCashout ? getCashoutReward() : currentReward) - stake)}</span></p>
-                  <p className="text-[9px] text-green-200">Wins: {wins}/{requiredWins}</p>
-                  <p className="text-[9px] text-green-200">Multi: {isEarlyCashout ? getCashoutInfo(selectedMultiplier).cashoutMultiplier : selectedMultiplier}×</p>
+              <div className="bg-gradient-to-br from-green-600 to-green-700 p-4 sm:p-5 rounded-lg text-center border-2 border-green-400 shadow-lg">
+                <p className="text-2xl sm:text-3xl font-extrabold text-white mb-3 drop-shadow-md">🎉 WINNER! 🎉</p>
+                <div className="bg-slate-900 rounded-lg p-4 sm:p-5 space-y-3">
+                  <p className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-yellow-300 drop-shadow-md">{Math.floor(isEarlyCashout ? getCashoutReward() : currentReward)} 🪙</p>
+                  <p className="text-sm sm:text-base text-green-100">Profit: <span className="font-bold text-yellow-300">+{Math.floor((isEarlyCashout ? getCashoutReward() : currentReward) - stake)}</span></p>
+                  <p className="text-xs sm:text-sm text-green-200">Wins: {wins}/{requiredWins}</p>
+                  <p className="text-xs sm:text-sm text-green-200">Multi: {isEarlyCashout ? getCashoutInfo(selectedMultiplier).cashoutMultiplier : selectedMultiplier}×</p>
                   {isEarlyCashout && (
-                    <p className="text-[9px] text-green-300">💰 Cashed Out Early!</p>
+                    <p className="text-sm sm:text-base text-green-300 font-semibold">💰 Cashed Out Early!</p>
                   )}
-                  <p className="text-[9px] text-green-200 mt-0.5">New Balance: {balance} 🪙</p>
+                  <p className="text-sm sm:text-base text-green-200 mt-1.5 font-semibold">New Balance: {balance} 🪙</p>
                 </div>
               </div>
               <button
                 onClick={restart}
-                className="w-full py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg"
+                className="w-full py-3 sm:py-3.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white text-base sm:text-lg font-extrabold rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-blue-500/50 border-2 border-blue-400"
               >
                 🔄 PLAY AGAIN
               </button>
